@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Mail\DominioVencido;
+use App\Mail\DominioSuspendido;
 use DB;
 use Mail;
 use Carbon\Carbon;
@@ -15,7 +16,7 @@ class DominiosPorVencer extends Command
      *
      * @var string
      */
-    protected $signature = 'dominios:porvencer';
+    protected $signature = 'dominios:renovar';
 
     /**
      * The console command description.
@@ -48,7 +49,9 @@ class DominiosPorVencer extends Command
             $dominio->dias_restantes=$diasDiferencia;
             if($diasDiferencia<=7){
                 $dominiosPorVencer->push($dominio);
-                Mail::to([ 'kevinene.hc@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new dominiovencido($dominio));
+                Mail::to([ 'kevinene.hc@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new DominioVencido($dominio));
+            }elseif($diasDiferencia==0){
+                Mail::to([ 'kevinene.hc@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new DominioSuspendido($dominio));
             }
         }
     }

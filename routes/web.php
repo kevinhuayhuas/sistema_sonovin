@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DominioController;
 use App\Mail\DominioVencido;
+use App\Mail\DominioSuspendido;
 use App\Models\Dominio;
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,20 @@ Route::controller(DominioController::class)->group(function(){
 });
 
 
+
+
+
 //Probar el envio de correo 
 Route::get('/dominiovencido', function () {
     $dominio = new Dominio();
-    return new dominiovencido($dominio);
-    /*$response = Mail::to("forzaken.mg@hotmail.com")->send(new dominiovencido($dominio));*/
+    return new DominioVencido($dominio);
+    /*$response = Mail::to("forzaken.mg@hotmail.com")->send(new DominioVencido($dominio));*/
+    //dump($response);
+});
+Route::get('/dominiosuspendido', function () {
+    $dominio = new Dominio();
+    $dominio->nombre="kevinhuayhuas.com";
+    return new DominioSuspendido($dominio);
+    /*$response = Mail::to("forzaken.mg@hotmail.com")->send(new DominioSuspendido($dominio));*/
     //dump($response);
 });
