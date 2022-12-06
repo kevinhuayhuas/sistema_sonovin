@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DominioController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ClienteController;
 use App\Mail\DominioVencido;
 use App\Mail\DominioSuspendido;
 use App\Models\Dominio;
@@ -30,7 +32,20 @@ Route::controller(DominioController::class)->group(function(){
     Route::get('dominios/{dominio}','show');
 });
 
+//Creando  un grupo de rutas segun  modulo
+Route::controller(ClienteController::class)->group(function(){
+    Route::get('clientes','index');
+    Route::get('clientes/create','create');
+    Route::get('clientes/{cliente}','show');
+});
 
+//Creando  un grupo de rutas segun  modulo
+Route::controller(ProductoController::class)->group(function(){
+    Route::get('productos','index');
+    Route::get('productos/create','create');
+    Route::get('productos/{producto}','show');
+    Route::post('guardarproducto','store');
+});
 
 
 

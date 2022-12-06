@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use App\Models\Cliente;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = DB::table('dominios')->get();
-        $arrayClientes=$clientes;
-        return view('cliente', compact('arrayClientes'));
+        return "hola";
     }
 
     /**
@@ -38,16 +35,19 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nombre'=>'',
+            'descripcion'=>'',
+        ]);
+        Producto::create($data);
     }
-
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cliente  $cliente
+     * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Cliente $cliente)
+    public function show(Producto $producto)
     {
         //
     }
@@ -55,10 +55,10 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cliente  $cliente
+     * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cliente $cliente)
+    public function edit(Producto $producto)
     {
         //
     }
@@ -67,10 +67,10 @@ class ClienteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cliente  $cliente
+     * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, Producto $producto)
     {
         //
     }
@@ -78,10 +78,10 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cliente  $cliente
+     * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy(Producto $producto)
     {
         //
     }

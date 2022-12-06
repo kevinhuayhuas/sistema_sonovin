@@ -21,11 +21,10 @@ class DominioVencido extends Mailable
      * @return void
      */
 
-    public $dominio;
-
+    public $dominios;
     public function __construct($dominio)
     {
-        $this->dominio = $dominio;
+        $this->dominios = $dominio;
     }
 
     /**

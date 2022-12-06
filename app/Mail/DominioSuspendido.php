@@ -19,10 +19,10 @@ class DominioSuspendido extends Mailable
      *
      * @return void
      */
-    public $dominio;
+    public $dominios;
     public function __construct($dominio)
     {
-        $this->dominio=$dominio;
+        $this->dominios=$dominio;
     }
 
     /**
@@ -35,7 +35,7 @@ class DominioSuspendido extends Mailable
     {
         return new Envelope(
             from: new Address('kevin.huayhuas@gmail.com', 'Kevin Huayhuas'),
-            subject: 'Tu Dominio ha sido suspendido, Renuevalo AHORA',
+            subject: 'Tu Dominio ha sido suspendido, Renuevalo ¡AHORA! ',
         );
     }
 
