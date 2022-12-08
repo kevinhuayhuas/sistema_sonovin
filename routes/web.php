@@ -49,6 +49,8 @@ Route::controller(ProductoController::class)->group(function(){
 
 
 
+
+
 //Probar el envio de correo 
 Route::get('/dominiovencido', function () {
     $dominio = new Dominio();

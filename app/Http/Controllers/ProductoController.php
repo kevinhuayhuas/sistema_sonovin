@@ -14,8 +14,12 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        return "hola";
+
+
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -35,11 +39,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'nombre'=>'',
-            'descripcion'=>'',
-        ]);
-        Producto::create($data);
+       
     }
     /**
      * Display the specified resource.

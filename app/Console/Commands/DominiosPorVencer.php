@@ -57,7 +57,9 @@ class DominiosPorVencer extends Command
             $dominio->dias_restantes=$diasDiferencia;
             if($diasDiferencia <= 7 && $diasDiferencia >= 1){
                 $dominiosPorVencer->push($dominio);
-            }elseif($diasDiferencia==0 || $diasDiferencia<=0 ){
+            }elseif($diasDiferencia<=0){
+                $dominiosSuspendidos->push($dominio);
+            }else{
                 $dominiosSuspendidos->push($dominio);
             }
         }
