@@ -39,7 +39,10 @@ class DominiosPorVencer extends Command
         $resultado->count() // La cantidad de elementos
         count($resultado) // La cantidad de elementos
         */
-        $dominios = DB::table('dominios')->get();
+        $dominios = DB::table('dominios')
+                    ->select('dominios.*', 'clientes.*')
+                    ->join('clientes', 'clientes.id', '=', 'dominios.cliente_id')
+                    ->orderBy('expira','desc')->get();
         $arrayDominios=$dominios;
         //capturar la fecha actual
         $fecha=Carbon::now();
@@ -52,22 +55,23 @@ class DominiosPorVencer extends Command
         foreach($arrayDominios as $dominio){
             //calcular los dias que falten para vencer
             $fechaExpiracion = Carbon::parse($dominio->expira);
-            $diasDiferencia = $fechaExpiracion->diffInDays($hoy);
-            //agregamos el valor de los dias que faltan por vencer
-            $dominio->dias_restantes=$diasDiferencia;
-            if($diasDiferencia <= 7 && $diasDiferencia >= 1){
-                $dominiosPorVencer->push($dominio);
-            }elseif($diasDiferencia<=0){
-                $dominiosSuspendidos->push($dominio);
-            }else{
+            if($hoy < $fechaExpiracion){
+                $diasDiferencia = $fechaExpiracion->diffInDays($hoy);
+                //agregamos el valor de los dias que faltan por vencer
+                $dominio->dias_restantes=$diasDiferencia;
+                if($diasDiferencia <= 7 && $diasDiferencia >= 1){
+                    $dominiosPorVencer->push($dominio);
+                }
+            }elseif($hoy > $fechaExpiracion){
                 $dominiosSuspendidos->push($dominio);
             }
         }
         //Enviar correo
         if (count($dominiosPorVencer)>0){
             Mail::to([ 'kevinene.hc@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new DominioVencido($dominiosPorVencer));
-        }elseif(count($dominiosSuspendidos)>0){
-            Mail::to([ 'kevinene.hc@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new DominioSuspendido($dominiosSuspendidos));
+        }
+        if(count($dominiosSuspendidos)>0){
+            //Mail::to([ 'kevinene.hc@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new DominioSuspendido($dominiosSuspendidos));
         }
     }
 }

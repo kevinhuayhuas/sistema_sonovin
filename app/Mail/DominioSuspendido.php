@@ -35,7 +35,7 @@ class DominioSuspendido extends Mailable
     {
         return new Envelope(
             from: new Address('kevin.huayhuas@gmail.com', 'Kevin Huayhuas'),
-            subject: 'Tu Dominio ha sido suspendido, Renuevalo ¡AHORA! ',
+            subject: 'Te mostramos la lista de los DOMINIOS SUSPENDIDOS',
         );
     }
 

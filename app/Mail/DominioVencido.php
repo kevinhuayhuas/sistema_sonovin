@@ -36,7 +36,7 @@ class DominioVencido extends Mailable
     {
         return new Envelope(
             from: new Address('kevin.huayhuas@gmail.com', 'Kevin Huayhuas'),
-            subject: '¡No pierda su Dominio!',
+            subject: '¡No pierda su Dominio! - RENUEVALO AHORA',
         );
     }
 

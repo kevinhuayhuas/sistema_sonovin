@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('dominios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cliente_id');
-            $table->string("nombre");
+            $table->string("nombre_dominio");
             $table->date("registro");
             $table->date("actualizacion");
             $table->date("expira");

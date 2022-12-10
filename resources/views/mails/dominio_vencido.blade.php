@@ -4,6 +4,12 @@
 <table class="table" border="1">
     <thead>
         <tr>
+            <th>
+                N°
+            </th>
+            <th>
+                Cliente
+            </th>
             <th scope="col">
                 Nombre
             </th>
@@ -19,16 +25,22 @@
             <th scope="col">
                 Estado
             </th>
-            <th scope="col">
-                Dias Restantes
-            </th>
         </tr>
     </thead>
     <tbody>
+        @php
+            $contador = 1;
+        @endphp
         @foreach ($dominios as $dominio)
         <tr scope="row">
             <td>
-                {{$dominio->nombre}}
+                {{$contador}}
+            </td>
+            <td>
+                {{$dominio->nombre}} {{$dominio->apellidos}}
+            </td>
+            <td>
+                {{$dominio->nombre_dominio}}
             </td>
             <td>
                 {{$dominio->registro}}
@@ -46,10 +58,10 @@
                     Suspendido
                 @endif
             </td>
-            <td style="text-align: center;">
-                {{$dominio->dias_restantes}}
-            </td>
         </tr>
+            @php
+                $contador ++;
+            @endphp
         @endforeach
     </tbody>
 </table>

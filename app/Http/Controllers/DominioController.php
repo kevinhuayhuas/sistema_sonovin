@@ -17,7 +17,11 @@ class DominioController extends Controller
      */
     public function index()
     {   
-        $dominios = DB::table('dominios')->get();
+        $dominios = DB::table('dominios')
+                    ->select('dominios.*', 'clientes.*')
+                    ->join('clientes', 'clientes.id', '=', 'dominios.cliente_id')
+                    //->where('clientes.nombre', '=', 'grimaldo')
+                    ->orderBy('expira','desc')->get();
         $arrayDominios=$dominios;
         //capturar la fecha actual
         $fecha=Carbon::now();
