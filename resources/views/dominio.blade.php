@@ -34,7 +34,7 @@
         @if (is_array($arrayDominios) || is_object($arrayDominios))
             @foreach ($arrayDominios as $dominio )
             <tr>
-                <td>{{$count}}</td>
+                <td>{{$count}}</td> 
                 <td>{{$dominio->nombre}} {{$dominio->apellidos}}</td>
                 <td>{{$dominio->nombre_dominio}} </td>
                 <td>{{$dominio->registro}}</td>
