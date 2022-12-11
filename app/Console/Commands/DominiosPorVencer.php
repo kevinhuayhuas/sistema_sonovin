@@ -68,10 +68,10 @@ class DominiosPorVencer extends Command
         }
         //Enviar correo
         if (count($dominiosPorVencer)>0){
-            Mail::to([ 'kevinene.hc@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new DominioVencido($dominiosPorVencer));
+            Mail::to([ 'kevin.huayhuas@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new DominioVencido($dominiosPorVencer));
         }
         if(count($dominiosSuspendidos)>0){
-            //Mail::to([ 'kevinene.hc@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new DominioSuspendido($dominiosSuspendidos));
+            Mail::to([ 'kevin.huayhuas@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new DominioSuspendido($dominiosSuspendidos));
         }
     }
 }
