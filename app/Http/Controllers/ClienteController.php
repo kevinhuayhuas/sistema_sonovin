@@ -15,7 +15,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = DB::table('dominios')->get();
+        $clientes = DB::table('clientes')->get();
         $arrayClientes=$clientes;
         return view('cliente', compact('arrayClientes'));
     }

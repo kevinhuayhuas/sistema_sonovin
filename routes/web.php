@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DominioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CronogramaController;
 use App\Mail\DominioVencido;
 use App\Mail\DominioSuspendido;
+use App\Mail\MailPagosDeServicios;
 use App\Models\Dominio;
+use App\Models\Cronograma;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,14 +50,22 @@ Route::controller(ProductoController::class)->group(function(){
     Route::post('guardarproducto','store');
 });
 
+//Creando  un grupo de rutas segun  modulo
+Route::controller(CronogramaController::class)->group(function(){
+    Route::get('cronogramas','index');
+    Route::get('cronogramas/create','create');
+    Route::get('cronogramas/{producto}','show');
+});
+
 
 
 
 
 //Probar el envio de correo 
-Route::get('/dominiovencido', function () {
-    $dominio = new Dominio();
-    return new DominioVencido($dominio);
+Route::get('/pagos', function () {
+    $cronograma = new Cronograma();
+    $cronograma->fecha_vencimiento = "2022-12-15";
+    return new MailPagosDeServicios($cronograma);
     /*$response = Mail::to("forzaken.mg@hotmail.com")->send(new DominioVencido($dominio));*/
     //dump($response);
 });

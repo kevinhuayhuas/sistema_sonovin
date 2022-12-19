@@ -33,6 +33,7 @@ class DominiosPorVencer extends Command
      */
     public function handle()
     {
+        $diasprevios = 7;
         /*
         $resultado->first() // Si es null es porque está vacío
         $resultado->isEmpty() // true o false
@@ -59,7 +60,7 @@ class DominiosPorVencer extends Command
                 $diasDiferencia = $fechaExpiracion->diffInDays($hoy);
                 //agregamos el valor de los dias que faltan por vencer
                 $dominio->dias_restantes=$diasDiferencia;
-                if($diasDiferencia <= 7 && $diasDiferencia >= 1){
+                if($diasDiferencia <= $diasprevios && $diasDiferencia >= 1){
                     $dominiosPorVencer->push($dominio);
                 }
             }elseif($hoy > $fechaExpiracion){
