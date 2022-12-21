@@ -61,9 +61,10 @@ class PagosdeServicios extends Command
                 }
             }
         //Enviar correo
-        if (count($facturasPorPagar)>0 || count($facturasVencidas)>0){
-            Mail::to([ 'kevin.huayhuas@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new MailPagosDeServicios($facturasVencidas));
+        if(count($facturasPorPagar)>0 || count($facturasVencidas)>0){
+            Mail::to([ 'kevin.huayhuas@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new MailPagosDeServicios($facturasPorPagar,$facturasVencidas));
         }
+
     }
     public function verificarFacturassVencidas(){
         $hoy = new Carbon();

@@ -20,9 +20,11 @@ class MailPagosDeServicios extends Mailable
      * @return void
      */
     public $cronogramas;
-    public function __construct($cronograma)
+    public $cronogramasVencidos;
+    public function __construct($cronograma, $cronogramasVencidos)
     {
         $this->cronogramas = $cronograma;
+        $this->cronogramasVencidos= $cronogramasVencidos;
     }
 
     /**
