@@ -51,7 +51,7 @@ class PagosdeServicios extends Command
                 $fechaVencimiento = Carbon::parse($cronograma->fecha_vencimiento);
                 if ($hoy < $fechaVencimiento) {
                     $diasDiferencia = $fechaVencimiento->diffInDays($hoy);
-                    if($diasDiferencia >= 1 && $diasDiferencia <= $diasprevios){
+                    if($diasDiferencia >= 0 && $diasDiferencia <= $diasprevios){
                         //agregamos el valor de los dias que faltan por vencer
                         $cronograma->dias_restantes=$diasDiferencia;
                         $facturasPorPagar->push($cronograma);

@@ -60,7 +60,7 @@ class DominiosPorVencer extends Command
                 $diasDiferencia = $fechaExpiracion->diffInDays($hoy);
                 //agregamos el valor de los dias que faltan por vencer
                 $dominio->dias_restantes=$diasDiferencia;
-                if($diasDiferencia <= $diasprevios && $diasDiferencia >= 1){
+                if($diasDiferencia <= $diasprevios && $diasDiferencia >= 0){
                     $dominiosPorVencer->push($dominio);
                 }
             }elseif($hoy > $fechaExpiracion){
