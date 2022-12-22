@@ -15,6 +15,7 @@
 
     <!-- Scripts -->
     <!--@vite(['resources/sass/app.scss', 'resources/js/app.js'])-->
+    <script src="https://use.fontawesome.com/a567284fb4.js"></script>
     <link rel="stylesheet" href="{{URL::asset('build/assets/app.67dcdfd2.css')}}">
     <script type="text/javascript" src="{{URL::asset('build/assets/app.562bb35b.js')}}"></script>
 </head>
