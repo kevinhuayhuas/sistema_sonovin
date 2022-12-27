@@ -6,7 +6,7 @@
         $mes = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     @endphp
     <div class="container">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-4">
                 <div class="card">
                     <div class="card-header">Facturas Vencidas</div>
@@ -32,7 +32,15 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#nuevoDominio">Generar Cronograma
+                        </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
@@ -79,6 +87,9 @@
                                     </th>
                                     <th>
                                         Estado
+                                    </th>
+                                    <th>
+                                        Acciones
                                     </th>
                                 </thead>
                                 <tbody>
@@ -139,18 +150,21 @@
                                             </td>
                                             <td>
                                                 @if ($cronograma->estado == 1)
-                                                    <p
-                                                        style="background-color: rgb(1, 138, 1); text-align: center; color: white;">
+                                                    <p class="text-success">
                                                         <strong>PAGADO</strong></p>
                                                 @elseif($cronograma->estado == 0)
                                                     <p
-                                                        style="background-color: rgb(255, 187, 0); text-align: center; color: rgb(0, 0, 0);">
+                                                    class="text-warning">
                                                         <strong>PENDIENTE</strong></p>
                                                 @elseif($cronograma->estado == 2)
                                                     <p
-                                                        style="background-color: rgb(212, 2, 2); text-align: center; color: rgb(255, 255, 255);">
+                                                    class="text-danger">
                                                         <strong>SIN PAGAR</strong></p>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-info" type="button" data-bs-target="#verDetalle"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                                <button class="btn btn-danger" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                             </td>
                                         </tr>
                                         @php

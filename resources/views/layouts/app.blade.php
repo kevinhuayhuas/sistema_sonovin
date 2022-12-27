@@ -18,6 +18,7 @@
     <script src="https://use.fontawesome.com/a567284fb4.js"></script>
     <link rel="stylesheet" href="{{URL::asset('build/assets/app.67dcdfd2.css')}}">
     <script type="text/javascript" src="{{URL::asset('build/assets/app.562bb35b.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -79,5 +80,6 @@
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>

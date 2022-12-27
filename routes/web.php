@@ -5,6 +5,7 @@ use App\Http\Controllers\DominioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CronogramaController;
+use App\Http\Controllers\PagoController;
 use App\Mail\DominioVencido;
 use App\Mail\DominioSuspendido;
 use App\Mail\MailPagosDeServicios;
@@ -54,21 +55,21 @@ Route::controller(ProductoController::class)->group(function(){
 Route::controller(CronogramaController::class)->group(function(){
     Route::get('cronogramas','index');
     Route::get('cronogramas/create','create');
-    Route::get('cronogramas/{producto}','show');
+    Route::get('cronogramas/{cronograma}','show');
+});
+
+//Creando  un grupo de rutas segun  modulo
+Route::controller(PagoController::class)->group(function(){
+    Route::get('pagos','index')->name('pagos');//vista all
+    Route::get('pagos/create','create');// vista
+    Route::get('pagos/{pago}','show');// vista mostrar find
+    Route::get('editpago/{pago}','edit');// vista mostrar find
+    Route::post('pagos','store'); // crear
+    Route::put('pagos/{pago}','update'); //actualizar
+    Route::get('eliminarpago/{id}','destroy'); // eliminar
 });
 
 
-
-
-
-//Probar el envio de correo 
-Route::get('/pagos', function () {
-    $cronograma = new Cronograma();
-    $cronograma->fecha_vencimiento = "2022-12-15";
-    return new MailPagosDeServicios($cronograma);
-    /*$response = Mail::to("forzaken.mg@hotmail.com")->send(new DominioVencido($dominio));*/
-    //dump($response);
-});
 Route::get('/dominiosuspendido', function () {
     $dominio = new Dominio();
     $dominio->nombre="kevinhuayhuas.com";
