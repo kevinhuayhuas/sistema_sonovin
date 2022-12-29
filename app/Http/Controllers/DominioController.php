@@ -26,11 +26,14 @@ class DominioController extends Controller
      */
     public function index()
     {   
+        $this->actualizarEstadoDominio();
+
         $dominios = DB::table('dominios')
-                    ->select('dominios.*', 'clientes.*')
+                    ->select('dominios.*','dominios.id AS id_dominio', 'clientes.*')
                     ->join('clientes', 'clientes.id', '=', 'dominios.cliente_id')
                     //->where('clientes.nombre', '=', 'grimaldo')
                     ->orderBy('expira','desc')->get();
+        $clientes = DB::table('clientes')->get();
         $arrayDominios=$dominios;
         //capturar la fecha actual
         $fecha=Carbon::now();
@@ -49,9 +52,13 @@ class DominioController extends Controller
                 $dominiosPorVencer->push($dominio);
             }
         }
-        return view('dominio', compact('arrayDominios','dominiosPorVencer'));
+        return view('dominio', compact('arrayDominios','dominiosPorVencer','clientes'));
     }
 
+    public function actualizarEstadoDominio(){
+        $hoy = new Carbon();
+        DB::table('dominios')->where("expira","<", $hoy->format('Y-m-d'))->update(["estado"=>2]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -70,7 +77,22 @@ class DominioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'txtCliente' => 'required',
+            'txtDominio' => 'required'
+        ]);
+
+        $dominio = new Dominio;
+        $dominio->cliente_id = $request->input('txtCliente');
+        $dominio->nombre_dominio = $request->input('txtDominio');
+        $dominio->registro = $request->input('txtRegistro');
+        $dominio->actualizacion = $request->input('txtActualizacion');
+        $dominio->expira = $request->input('txtExpira');
+        $dominio->estado = $request->input('txtEstado');
+        $dominio->save();
+        $dominios= DB::table("dominios")->select('dominios.*')->get();
+        //return redirec por name en rutas web 
+        return redirect()->route("dominios",compact("dominios"));
     }
 
     /**
@@ -79,9 +101,11 @@ class DominioController extends Controller
      * @param  \App\Models\Dominio  $dominio
      * @return \Illuminate\Http\Response
      */
-    public function show(Dominio $dominio)
+    public function show($id)
     {
-        //
+        $clientes = DB::table('clientes')->get();
+        $dominio= DB::table("dominios")->select('dominios.*','dominios.id AS id_dominio')->find($id);
+        return view('detalleDominio',compact("dominio","clientes"));
     }
 
     /**
@@ -90,9 +114,11 @@ class DominioController extends Controller
      * @param  \App\Models\Dominio  $dominio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dominio $dominio)
+    public function edit($id)
     {
-        //
+        $clientes = DB::table('clientes')->get();
+        $dominio= DB::table("dominios")->select('dominios.*','dominios.id AS id_dominio')->find($id);
+        return view('editarDominio',compact("dominio","clientes"));
     }
 
     /**
@@ -102,9 +128,21 @@ class DominioController extends Controller
      * @param  \App\Models\Dominio  $dominio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dominio $dominio)
+    public function update(Request $request, $id)
     {
-        //
+        $dominio=Pago::find($id);
+
+        $dominio ->cliente_id =$request->input('txtCliente');
+        $dominio->nombre_dominio=$request->input('txtDominio');
+        $dominio->registro=$request->input('txtRegistro');
+        $dominio->actualizacion=$request->input('txtActualizacion');
+        $dominio->expira=$request->input('txtExpira');
+        $dominio->estado=$request->input('txtEstado');
+
+        $dominio->update();
+
+        $dominios= DB::table("dominios")->select('dominios.*')->get();
+        return redirect()->route("dominios",compact("dominios"));
     }
 
     /**
@@ -113,8 +151,11 @@ class DominioController extends Controller
      * @param  \App\Models\Dominio  $dominio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dominio $dominio)
+    public function destroy($id)
     {
-        //
+        $dominio = Dominio::find($id); 
+        $dominio->delete();
+        $dominios= DB::table("dominios")->select('dominios.*')->get();
+        return redirect()->route("dominios",compact("dominios"));
     }
 }

@@ -1,13 +1,20 @@
 @extends('layouts.app')
 @section('content')
     @php
-        
         $dia = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
         $mes = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     @endphp
     <div class="container">
         <div class="row mb-3">
-            <div class="col-4">
+            <div class="col">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#nuevoDominio"><i class="fa fa-plus-square" aria-hidden="true"></i> Generar Cronograma
+                        </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4 col-sm-12 mb-3">
                 <div class="card">
                     <div class="card-header">Facturas Vencidas</div>
                     <div class="card-body">
@@ -15,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4 col-sm-12 mb-3">
                 <div class="card">
                     <div class="card-header">Facturas Pagadas</div>
                     <div class="card-body">
@@ -23,20 +30,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4 col-sm-12 mb-3">
                 <div class="card">
                     <div class="card-header">Facturas Por Pagar</div>
                     <div class="card-body">
                         <p class="text-center" style="font-size:20px;">{{ $facturasPorPagar }}</p>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col">
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#nuevoDominio">Generar Cronograma
-                        </button>
                 </div>
             </div>
         </div>

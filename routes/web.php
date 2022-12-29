@@ -31,16 +31,24 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Creando  un grupo de rutas segun  modulo
 Route::controller(DominioController::class)->group(function(){
-    Route::get('dominios','index');
+    Route::get('dominios','index')->name('dominios');
     Route::get('dominios/create','create');
     Route::get('dominios/{dominio}','show');
+    Route::get('editdominio/{dominio}','edit');// vista mostrar find
+    Route::post('dominios','store'); // crear
+    Route::put('dominios/{dominio}','update'); //actualizar
+    Route::get('eliminardominio/{id}','destroy'); // eliminar
 });
 
 //Creando  un grupo de rutas segun  modulo
 Route::controller(ClienteController::class)->group(function(){
-    Route::get('clientes','index');
+    Route::get('clientes','index')->name('clientes');
     Route::get('clientes/create','create');
     Route::get('clientes/{cliente}','show');
+    Route::get('editcliente/{cliente}','edit');// vista mostrar find
+    Route::post('clientes','store'); // crear
+    Route::put('clientes/{cliente}','update'); //actualizar
+    Route::get('eliminarcliente/{id}','destroy'); // eliminar
 });
 
 //Creando  un grupo de rutas segun  modulo
@@ -53,7 +61,7 @@ Route::controller(ProductoController::class)->group(function(){
 
 //Creando  un grupo de rutas segun  modulo
 Route::controller(CronogramaController::class)->group(function(){
-    Route::get('cronogramas','index');
+    Route::get('cronogramas','index')->name('cronogramas');
     Route::get('cronogramas/create','create');
     Route::get('cronogramas/{cronograma}','show');
 });
@@ -68,6 +76,17 @@ Route::controller(PagoController::class)->group(function(){
     Route::put('pagos/{pago}','update'); //actualizar
     Route::get('eliminarpago/{id}','destroy'); // eliminar
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/dominiosuspendido', function () {

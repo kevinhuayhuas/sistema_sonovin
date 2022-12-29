@@ -17,15 +17,17 @@ return new class extends Migration
             $table->id();
             $table->string("nombre");
             $table->string("apellidos");
-            $table->string("empresa");
-            $table->string("correo");
-            $table->string("telefono");
-            $table->string("celular");
-            $table->string("web");
-            $table->string("distrito");
-            $table->string("departamento");
-            $table->string("direccion");
-            $table->string("inmueble");
+            $table->string("empresa")->nullable();;
+            $table->string("dni")->nullable();;
+            $table->string("ruc")->nullable();;
+            $table->string("correo")->nullable();;
+            $table->string("telefono")->nullable();;
+            $table->string("celular")->nullable();;
+            $table->string("web")->nullable();;
+            $table->string("distrito")->nullable();;
+            $table->string("departamento")->nullable();;
+            $table->string("direccion")->nullable();;
+            $table->string("inmueble")->nullable();;
             $table->timestamps();
         });
     }

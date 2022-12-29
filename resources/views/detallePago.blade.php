@@ -43,8 +43,7 @@
                                 <div class="col">
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <a href="{{ url('pagos/') }}" class="btn btn-secondary">Cerrar</a>
-                                        <a href="{{ url('pagos/') }}" type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"
-                                                aria-hidden="true"></i>
+                                        <a href="{{ url('pagos/') }}" type="submit" class="btn btn-primary"><i class="fa fa-check-square-o" aria-hidden="true"></i>
                                             Aceptar</a>
                                     </div>
                                 </div>

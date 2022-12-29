@@ -33,7 +33,7 @@ class PagosdeServicios extends Command
     {       
             $diasprevios = 7;
             //actualizar el estado segun la fecha de hoy
-            $this->verificarFacturassVencidas();
+            $this->verificarFacturasVencidas();
             //Consultamos la base de datos
             $cronogramas = DB::table('cronogramas')
             ->select('cronogramas.*', 'pagos.*')
@@ -66,7 +66,7 @@ class PagosdeServicios extends Command
         }
 
     }
-    public function verificarFacturassVencidas(){
+    public function verificarFacturasVencidas(){
         $hoy = new Carbon();
         DB::table('cronogramas')->where("fecha_vencimiento","<", $hoy->format('Y-m-d'))->where("estado","!=","1")->update(["estado"=>2]);
     }

@@ -9,6 +9,15 @@ use Carbon\Carbon;
 class CronogramaController extends Controller
 {
     /**
+     * Create a new controller instance.
+     * Aqui pedimos que el usuario este logeado para ingresar al sistema 
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

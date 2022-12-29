@@ -40,6 +40,7 @@ class DominiosPorVencer extends Command
         $resultado->count() // La cantidad de elementos
         count($resultado) // La cantidad de elementos
         */
+        $this->actualizarEstadoDominio();
         $dominios = DB::table('dominios')
                     ->select('dominios.*', 'clientes.*')
                     ->join('clientes', 'clientes.id', '=', 'dominios.cliente_id')
@@ -74,5 +75,9 @@ class DominiosPorVencer extends Command
         if(count($dominiosSuspendidos)>0){
             Mail::to([ 'kevin.huayhuas@gmail.com' , 'forzaken.mg@hotmail.com'])->send(new DominioSuspendido($dominiosSuspendidos));
         }
+    }
+    public function actualizarEstadoDominio(){
+        $hoy = new Carbon();
+        DB::table('dominios')->where("expira","<", $hoy->format('Y-m-d'))->update(["estado"=>2]);
     }
 }
