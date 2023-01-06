@@ -130,7 +130,7 @@ class DominioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dominio=Pago::find($id);
+        $dominio=Dominio::find($id);
 
         $dominio ->cliente_id =$request->input('txtCliente');
         $dominio->nombre_dominio=$request->input('txtDominio');

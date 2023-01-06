@@ -59,6 +59,7 @@
                                     @enderror
                                 </div>
                                 <div class="col">
+                                    <div class="mb-3">
                                     <label for="txtEstado" class="col-form-label">Estado:</label>
                                     <select class="form-select" id="txtEstado" name="txtEstado">
                                         
@@ -68,10 +69,20 @@
                                     @error('txtEstado')
                                     <p class="text-danger">Completar este campo</p>
                                     @enderror
+                                    </div>
                                 </div>
                             </div>
-
-
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <button class="btn btn-secondary"
+                                            >Cerrar</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"
+                                                aria-hidden="true"></i>
+                                            Guardar Cambios</button>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
