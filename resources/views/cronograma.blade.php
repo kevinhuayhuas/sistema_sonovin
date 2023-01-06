@@ -40,6 +40,153 @@
             </div>
         </div>
         <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">Cronograma del año : {{Carbon\Carbon::parse(new \Carbon\Carbon())->format('Y')}}</div>
+                    <div class="card-body">
+                        <table class="table table-hove">
+                            <thead>
+                                <th>N°</th>
+                                <th>Servicio</th>
+                                <th>Enero</th>
+                                <th>Febrero</th>
+                                <th>Marzo</th>
+                                <th>Abril</th>
+                                <th>Mayo</th>
+                                <th>Junio</th>
+                                <th>Julio</th>
+                                <th>Agosto</th>
+                                <th>Septiembre</th>
+                                <th>Octubre</th>
+                                <th>Noviembre</th>
+                                <th>Diciembre</th>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $count = 1;
+                                    $codigo=null;
+                                    // evitar que devuelva cero 
+                                    $listCodigos = collect('primer valor');
+                                @endphp
+                                @foreach ($cronogramas as $cronograma)
+                                            @php
+                                                //eliminar espacios
+                                                $codigo = trim($cronograma->codigo_pago);
+                                                $buscar = $listCodigos->search($codigo,true);
+                                            @endphp
+
+                                        @if ($buscar)
+                                                
+                                        @else
+                                            @php
+                                                $listCodigos->push($codigo);
+                                            @endphp
+                                                <tr>
+                                                    <td>
+                                                        {{ $count." no existe"}} 
+                                                    <td>
+                                                        {{ $cronograma->nombre_pago }}
+                                                    </td>
+                                                    <td class="enero">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 1)
+                                                            {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="febrero">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 2)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="marzo">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 3)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="abril">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 4)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="mayo">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 5)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                    @else
+                                                        {{ "----" }}
+                                                    @endif
+                                                    </td>
+                                                    <td class="junio">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 6)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="julio">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 7)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="agosto">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 8)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="septiembre">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 9)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="octubre">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 10)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="noviembre">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 11)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="diciembre">
+                                                        @if (Carbon\Carbon::parse($cronograma->fecha_vencimiento )->format('m') == 12)
+                                                        {{ $cronograma->fecha_vencimiento }}
+                                                        @else
+                                                            {{ "----" }}
+                                                        @endif
+                                                    </td>
+                                                    @php
+                                                        $count++;
+                                                    @endphp
+                                                </tr>
+                                        @endif
+
+                                @endforeach
+                             </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mb-3">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
